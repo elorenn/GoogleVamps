@@ -52,3 +52,42 @@ body {
 	left:0;
 }
 
+// ==========================================
+
+.hello-human {
+    display: none;
+    padding: 20px;
+}
+
+#human:checked .hello-human {
+    display: block;
+}
+
+
+
+.hello-vampire {
+    display: block;
+    padding: 20px;
+}
+
+#vampire:checked .hello-vampire {
+    display: none;
+}
+
+
+.vampire-form {
+	display: none;
+}
+
+#human:checked .vampire-form {
+    display: block;
+}
+
+
+.human-form {
+	display: block;
+}
+
+#vampire:checked .human-form {
+    display: none;
+}

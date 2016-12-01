@@ -23,16 +23,32 @@ console.log("APP ONLINE");
 $(document).ready(function (argument) {
 	
 	console.log("The page has finished loading.");
-	$("#human").on("click", changetoHuman);
+	$("#human").on("click", intoHuman);
+	$("#vampire").on("click", intoVampire);
 	
 });
 
-function changetoHuman () {
+function intoHuman () {
+	console.log("User is a human");
 	// should this toggle content between human and vampire?
+	$(".hello-vampire").toggle();
+	$(".hello-human").toggle();
 
-	if (this.checked) {
-		console.log("User is a human");
-	} else {
-		console.log("User is a vampire");
-	}
+	$(".vampire-form").toggle();
+	$(".human-form").toggle();
+
 }
+
+function intoVampire () {
+	console.log("User is a vampire");
+	// should this toggle content between human and vampire?
+	$(".hello-vampire").toggle();
+	$(".hello-human").toggle();
+
+	$(".vampire-form").toggle();
+	$(".human-form").toggle();
+
+	$(".adjective").text("indecisive");
+
+}
+
