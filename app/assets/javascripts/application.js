@@ -15,5 +15,24 @@
 //= require turbolinks
 //= require_tree .
 
-
+//= require tether
 //= require bootstrap-sprockets
+
+console.log("APP ONLINE");
+
+$(document).ready(function (argument) {
+	
+	console.log("The page has finished loading.");
+	$("#human").on("click", changetoHuman);
+	
+});
+
+function changetoHuman () {
+	// should this toggle content between human and vampire?
+
+	if (this.checked) {
+		console.log("User is a human");
+	} else {
+		console.log("User is a vampire");
+	}
+}
