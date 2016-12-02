@@ -18,16 +18,24 @@
 //= require tether
 //= require bootstrap-sprockets
 
+var map;
+
 console.log("APP ONLINE");
 
 $(document).ready(function (argument) {
 	
 	console.log("The page has finished loading.");
+
+	if ("geolocation" in navigator){
+	  navigator.geolocation.getCurrentPosition(onLocation, onError);
+	}	
+
 	$("#human").on("click", intoHuman);
 	$("#vampire").on("click", intoVampire);
-	// promptForLocation();
+	
 	
 });
+
 
 function intoHuman (event) {
 	event.preventDefault();
@@ -55,50 +63,40 @@ function intoVampire (event) {
 
 }
 
-// function promptForLocation () {
-// 	if ("geolocation" in navigator) {
-// 		console.log("Geolocation functions are available.");
+function onLocation(position){
 
-// 		var optionsThing = {
-// 			enableHighAccuracy: true,
-// 			timeout: 5000
-// 		};
+  var myPosition = {
+    lat: position.coords.latitude,
+    lng: position.coords.longitude
+  };
 
-// 		navigator.geolocation.getCurrentPosition(getPosition, showError);
-// 	}
-// 	else {
-// 		var errorHtml = `
-// 		<div class="alert alert-danger" role="alert">
-// 			<strong> Sorry! </strong>
-// 			Your browser is too old to use this site. 
-// 			Please update to GoogleChrome or equivalent.
-// 		</div>`;
+  createMap(myPosition);
+}
 
-// 		$("body").prepend(errorHtml);
-	
-// 		console.log("Geolocation functions are NOT available.");
-// 	}
-// }
+function onError(err){
+  console.log("Error locating your position. Please update your browser.", err);
+}
 
-// function getPosition (locationInfo) {
-// 	console.log("Got position successfully.");
-// 	console.log(locationInfo);
-// 	console.log(locationInfo.coords);
-// 	console.log(locationInfo.coords.latitude);
-// 	console.log(locationInfo.coords.longitude);
+function createMap(position){
+  var mapOptions = {
+    center: position,
+    zoom: 12
+  };
+  map = new google.maps.Map($('#map')[0], mapOptions);
+  createMarker(position);
+  createMarker({lat: 25.8068102, lng: -80.201181}); 
+}
 
-// }
+function createMarker(position) {
+  var marker = new google.maps.Marker({
+   position: position,
+   map: map
+ });
+}
 
-// function showError (errorInfo) {
-// 	console.log("Error getting position.");
-// 	console.log(errorInfo);
-
-// 	var positionErrorHtml = `
-// 		<div class="alert alert-warning" role="alert">
-// 			<strong> Sorry! </strong>
-// 			We need your location to calculate your current risks.`
-
-
-// 	$("body").prepend(positionErrorHtml);
-
-// }
+function createMarker(position) {
+  var marker = new google.maps.Marker({
+   position: position,
+   map: map
+ });
+}
