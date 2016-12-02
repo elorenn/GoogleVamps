@@ -25,10 +25,12 @@ $(document).ready(function (argument) {
 	console.log("The page has finished loading.");
 	$("#human").on("click", intoHuman);
 	$("#vampire").on("click", intoVampire);
+	// promptForLocation();
 	
 });
 
-function intoHuman () {
+function intoHuman (event) {
+	event.preventDefault();
 	console.log("User is a human");
 	// should this toggle content between human and vampire?
 	$(".hello-vampire").toggle();
@@ -39,7 +41,8 @@ function intoHuman () {
 
 }
 
-function intoVampire () {
+function intoVampire (event) {
+	event.preventDefault();
 	console.log("User is a vampire");
 	// should this toggle content between human and vampire?
 	$(".hello-vampire").toggle();
@@ -52,3 +55,50 @@ function intoVampire () {
 
 }
 
+// function promptForLocation () {
+// 	if ("geolocation" in navigator) {
+// 		console.log("Geolocation functions are available.");
+
+// 		var optionsThing = {
+// 			enableHighAccuracy: true,
+// 			timeout: 5000
+// 		};
+
+// 		navigator.geolocation.getCurrentPosition(getPosition, showError);
+// 	}
+// 	else {
+// 		var errorHtml = `
+// 		<div class="alert alert-danger" role="alert">
+// 			<strong> Sorry! </strong>
+// 			Your browser is too old to use this site. 
+// 			Please update to GoogleChrome or equivalent.
+// 		</div>`;
+
+// 		$("body").prepend(errorHtml);
+	
+// 		console.log("Geolocation functions are NOT available.");
+// 	}
+// }
+
+// function getPosition (locationInfo) {
+// 	console.log("Got position successfully.");
+// 	console.log(locationInfo);
+// 	console.log(locationInfo.coords);
+// 	console.log(locationInfo.coords.latitude);
+// 	console.log(locationInfo.coords.longitude);
+
+// }
+
+// function showError (errorInfo) {
+// 	console.log("Error getting position.");
+// 	console.log(errorInfo);
+
+// 	var positionErrorHtml = `
+// 		<div class="alert alert-warning" role="alert">
+// 			<strong> Sorry! </strong>
+// 			We need your location to calculate your current risks.`
+
+
+// 	$("body").prepend(positionErrorHtml);
+
+// }
